@@ -1,6 +1,7 @@
 import pymysql 
 pymysql.install_as_MySQLdb()
 
+
 """
 Django settings for storefront project.
 
