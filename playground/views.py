@@ -17,7 +17,9 @@ def say_hello(request):
     # queryset = Customer.objects.filter(email__icontains=".com")
     # queryset = Collection.objects.filter(featured_product__isnull=True)
     # queryset = Order.objects.filter(customer__id=1)
-    queryset = Product.objects.filter(inventory=F("collection__id"))
+    queryset = Product.objects.filter(id__in=OrderItem.objects.values("product_id").distinct()).order_by("title")
+    
+
     
 
 
