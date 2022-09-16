@@ -32,6 +32,8 @@ def say_hello(request):
         orders_count=Count("order")
     )
 
+    queryset = Customer.objects.annotate(amt_spent=Max())
+
 
     
 
