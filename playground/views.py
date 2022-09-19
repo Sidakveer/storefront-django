@@ -6,7 +6,7 @@ from django.db.models import Q, F, Value, Func
 from django.db.models.aggregates import Max, Min, Count ,Avg, Sum
 from django.db.models.functions import Concat
 from django.contrib.contenttypes.models import ContentType
-from django.db import transaction
+from django.db import transaction, connection
 
 from tags.models import TaggedItem
 
@@ -18,17 +18,10 @@ from store.models import Collection, Product, Customer, Order, OrderItem, CartIt
 
 def say_hello(request):
 
-    with transaction.atomic():
-        order = Order()
-        order.customer_id = 1
-        order.save()
+    queryset = Product.objects.raw("SELECT * FROM store_product")
 
-        item = OrderItem()
-        item.order = order
-        item.product_id = 1
-        item.unit_price = 10
-        item.quantity = 1
-        item.save()
+    # with connection.cursor as cursor:
+    #     cursor.execute()
 
     
     return render(request, 'hello.html', {'name': 'Mosh',})
