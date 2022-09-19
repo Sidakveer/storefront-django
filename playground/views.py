@@ -17,7 +17,10 @@ from store.models import Collection, Product, Customer, Order, OrderItem
 
 def say_hello(request):
 
-    TaggedItem.objects.get_tags_for(Product, 1)
+    collection = Collection()
+    collection.title = "Video Games"
+    collection.featured_product = Product(pk=1)
+    collection.save()
 
     
     return render(request, 'hello.html', {'name': 'Mosh', "products": list(queryset)})
