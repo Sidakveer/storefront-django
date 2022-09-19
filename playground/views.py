@@ -9,7 +9,7 @@ from django.contrib.contenttypes.models import ContentType
 
 from tags.models import TaggedItem
 
-from store.models import Collection, Product, Customer, Order, OrderItem
+from store.models import Collection, Product, Customer, Order, OrderItem, CartItem, Cart
 
 
 
@@ -17,9 +17,17 @@ from store.models import Collection, Product, Customer, Order, OrderItem
 
 def say_hello(request):
 
-    collection = Collection.objects.get(pk=11)
-    collection.featured_product = None
-    collection.save()
+    # cart = Cart()
+    # cart.save()
+
+    # cartitem = CartItem.objects.get(pk=2)
+    # cartitem.quantity = 12
+    # cartitem.cart = cart
+    # cartitem.product_id = 1
+    # cartitem.save()
+    
+    cart = Cart(pk=2)
+    cart.delete()
 
     
     return render(request, 'hello.html', {'name': 'Mosh',})
