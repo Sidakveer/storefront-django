@@ -17,10 +17,9 @@ from store.models import Collection, Product, Customer, Order, OrderItem
 
 def say_hello(request):
 
-    collection = Collection()
-    collection.title = "Video Games"
-    collection.featured_product = Product(pk=1)
+    collection = Collection.objects.get(pk=11)
+    collection.featured_product = None
     collection.save()
 
     
-    return render(request, 'hello.html', {'name': 'Mosh', "products": list(queryset)})
+    return render(request, 'hello.html', {'name': 'Mosh',})
