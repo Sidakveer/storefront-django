@@ -3,7 +3,7 @@ from . import models
 
 @admin.register(models.Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ["title", "unit_price", "inventory_status"]
+    list_display = ["title", "unit_price", "inventory_status", "inventory"]
     list_editable = ["unit_price"]
 
     @admin.display(ordering="inventory")
