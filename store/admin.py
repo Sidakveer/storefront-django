@@ -1,6 +1,8 @@
+from itertools import product
 from math import prod
 from django.contrib import admin
 from . import models
+from django.db.models.aggregates import Max, Min, Count ,Avg, Sum
 
 @admin.register(models.Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -30,6 +32,17 @@ class CustomerAdmin(admin.ModelAdmin):
     list_per_page = 10
 
 admin.site.register(models.Collection)
+class CollectionAdmin(admin.ModelAdmin):
+    list_display = ["title", "products_count"]
+
+    def products_count(self, collection):
+        return collection.products_count
+    
+    def get_queryset(self, request):
+        return super().get_queryset(request).annotate(
+            product_count=Count("product")
+        )
+
     
 
 
